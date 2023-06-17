@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<Windows.h>
 #include<string>
 using namespace std;
@@ -26,17 +26,17 @@ void main()
 	setlocale(LC_ALL, "");
 #ifdef Lesson
 	cout << "Hello Strings!";
-	char str[] = { 'H', 'e', 'l', 'l', 'o', '\0' }; //Ìîæíî ïðîñòî 0 - òèïà int, îí óæìåòñÿ äî 1 áèòà è áóäåò char.
+	char str[] = { 'H', 'e', 'l', 'l', 'o', '\0' }; //ÐœÐ¾Ð¶Ð½Ð¾ Ð¿Ñ€Ð¾ÑÑ‚Ð¾ 0 - Ñ‚Ð¸Ð¿Ð° int, Ð¾Ð½ ÑƒÐ¶Ð¼ÐµÑ‚ÑÑ Ð´Ð¾ 1 Ð±Ð¸Ñ‚Ð° Ð¸ Ð±ÑƒÐ´ÐµÑ‚ char.
 	char str[] = "Hello";
 	cout << str << endl;
 	cout << sizeof(str) << endl;
 
 	const int n = 20;
 	char str[n] = {};
-	cout << "Ââåäèòå ñòðîêó: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚Ñ€Ð¾ÐºÑƒ: ";
 	SetConsoleCP(1251);
 	cin.getline(str, n);
-	SetConsoleCP(866); // - ýòî íå îáÿçàòåëüíî â ïîñëåäíåé âåðñèè ñòóäèè.
+	SetConsoleCP(866); // - ÑÑ‚Ð¾ Ð½Ðµ Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð² Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ¹ Ð²ÐµÑ€ÑÐ¸Ð¸ ÑÑ‚ÑƒÐ´Ð¸Ð¸.
 	cout << str << endl;
 #endif // Lesson
 	
@@ -44,24 +44,24 @@ void main()
 	char str[n] = {"Was it    a       cat     I saw?"};
 	//char str[n] = { "0101011001" };
 	//char str[n] = { "7B" };
-	//cout << "Ââåäèòå ñòðîêó: ";
+	//cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚Ñ€Ð¾ÐºÑƒ: ";
 	SetConsoleCP(1251);
 	//cin.getline(str, n);
-	SetConsoleCP(866); // - ýòî íå îáÿçàòåëüíî â ïîñëåäíåé âåðñèè ñòóäèè.
-	cout << "Âû ââåëè ñòðîêó:\n" << str << " äëèíîé " << StringLength(str) << " ñèìâîëîâ" << endl;
-	cout << "Ïåðåâîä â âåðõíèé ðåãèñòð: "; ToUpper(str); cout << endl;
-	cout << "Ïåðåâîä â íèæíèé ðåãèñòð: "; ToLower(str); cout << str << endl;
-	cout << "Óäàëåíèå ëèøíèõ ïðîáåëîâ: "; Shrink(str); cout << str << endl;
+	SetConsoleCP(866); // - ÑÑ‚Ð¾ Ð½Ðµ Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð² Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÐµÐ¹ Ð²ÐµÑ€ÑÐ¸Ð¸ ÑÑ‚ÑƒÐ´Ð¸Ð¸.
+	cout << "Ð’Ñ‹ Ð²Ð²ÐµÐ»Ð¸ ÑÑ‚Ñ€Ð¾ÐºÑƒ:\n" << str << " Ð´Ð»Ð¸Ð½Ð¾Ð¹ " << StringLength(str) << " ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð²" << endl;
+	cout << "ÐŸÐµÑ€ÐµÐ²Ð¾Ð´ Ð² Ð²ÐµÑ€Ñ…Ð½Ð¸Ð¹ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€: "; ToUpper(str); cout << endl;
+	cout << "ÐŸÐµÑ€ÐµÐ²Ð¾Ð´ Ð² Ð½Ð¸Ð¶Ð½Ð¸Ð¹ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€: "; ToLower(str); cout << str << endl;
+	cout << "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð»Ð¸ÑˆÐ½Ð¸Ñ… Ð¿Ñ€Ð¾Ð±ÐµÐ»Ð¾Ð²: "; Shrink(str); cout << str << endl;
 	//cout << str << endl;
-	cout << "Ñòðîêà" << (Polindrome(str) ? "" : " íå") << " ïàëèíäðîì: ";
+	cout << "Ð¡Ñ‚Ñ€Ð¾ÐºÐ°" << (Polindrome(str) ? "" : " Ð½Ðµ") << " Ð¿Ð°Ð»Ð¸Ð½Ð´Ñ€Ð¾Ð¼: ";
 	cout << str << endl;
-	if (!IsIntNumber(str))cout << "Ñòðîêà íå ÿâëÿåòñÿ öåëûì äåñÿòè÷íûì ÷èñëîì!" << endl;
-	else cout << ToIntNumber(str) << " - ýòî ÷èñëî ÿâëÿåòñÿ öåëûì äåñèòè÷íûì." << endl;
-	if (!IsBinNumber(str))cout << "Ñòðîêà íå ÿâëÿåòñÿ äâîè÷íûì ÷èñëîì!" << endl;
-	else cout << "Ñòðîêà " << str << " ÿâëÿåòñÿ äâîè÷íûì ÷èñëîì è ïåðåâîä åãî â äåñèò÷íîå ÷èñëî: " 
+	if (!IsIntNumber(str))cout << "Ð¡Ñ‚Ñ€Ð¾ÐºÐ° Ð½Ðµ ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ñ†ÐµÐ»Ñ‹Ð¼ Ð´ÐµÑÑÑ‚Ð¸Ñ‡Ð½Ñ‹Ð¼ Ñ‡Ð¸ÑÐ»Ð¾Ð¼!" << endl;
+	else cout << ToIntNumber(str) << " - ÑÑ‚Ð¾ Ñ‡Ð¸ÑÐ»Ð¾ ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ñ†ÐµÐ»Ñ‹Ð¼ Ð´ÐµÑÐ¸Ñ‚Ð¸Ñ‡Ð½Ñ‹Ð¼." << endl;
+	if (!IsBinNumber(str))cout << "Ð¡Ñ‚Ñ€Ð¾ÐºÐ° Ð½Ðµ ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ð´Ð²Ð¾Ð¸Ñ‡Ð½Ñ‹Ð¼ Ñ‡Ð¸ÑÐ»Ð¾Ð¼!" << endl;
+	else cout << "Ð¡Ñ‚Ñ€Ð¾ÐºÐ° " << str << " ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ð´Ð²Ð¾Ð¸Ñ‡Ð½Ñ‹Ð¼ Ñ‡Ð¸ÑÐ»Ð¾Ð¼ Ð¸ Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´ ÐµÐ³Ð¾ Ð² Ð´ÐµÑÐ¸Ñ‚Ñ‡Ð½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: " 
 		<< BinToDec(str) << endl;
-	if (!IsHexNumber(str))cout << "Ñòðîêà íå ÿâëÿåòñÿ øåñòíàäöàòåðè÷íûì ÷èñëîì!" << endl;
-	else cout << "Ñòðîêà " << str << " ÿâëÿåòñÿ øåñòíàäöàòåðè÷íûì ÷èñëîì è ïåðåâîä åãî â äåñèò÷íîå ÷èñëî: "
+	if (!IsHexNumber(str))cout << "Ð¡Ñ‚Ñ€Ð¾ÐºÐ° Ð½Ðµ ÑÐ²Ð»ÑÐµÑ‚ÑÑ ÑˆÐµÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÐµÑ€Ð¸Ñ‡Ð½Ñ‹Ð¼ Ñ‡Ð¸ÑÐ»Ð¾Ð¼!" << endl;
+	else cout << "Ð¡Ñ‚Ñ€Ð¾ÐºÐ° " << str << " ÑÐ²Ð»ÑÐµÑ‚ÑÑ ÑˆÐµÑÑ‚Ð½Ð°Ð´Ñ†Ð°Ñ‚ÐµÑ€Ð¸Ñ‡Ð½Ñ‹Ð¼ Ñ‡Ð¸ÑÐ»Ð¾Ð¼ Ð¸ Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´ ÐµÐ³Ð¾ Ð² Ð´ÐµÑÐ¸Ñ‚Ñ‡Ð½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "
 		<< HexToDec(str) << endl;
 }
 
@@ -78,7 +78,7 @@ void ToUpper(char str[])
 	for (int i = 0; i < str[i]; i++)
 	{
 		if (str[i] >= 'a' && str[i] <= 'z')str[i] -= ' ';
-		if (str[i] >= 'à' && str[i] <= 'ÿ')str[i] -= ' ';
+		if (str[i] >= 'Ð°' && str[i] <= 'Ñ')str[i] -= ' ';
 		cout << str[i];
 	}
 	cout << endl;
