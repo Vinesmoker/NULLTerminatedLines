@@ -12,9 +12,14 @@ int StringLength(const char str[]);
 void ToUpper(char str[]);
 void ToLower(char str[]);
 void Shrink(char str[]);
-bool Polindrome(char str[]);
-void RemoveSymbol(char str[], char symbol);
+string RemoveSymbol(const string& str);
+bool Polindrome(const char str[]);
 bool IsIntNumber(const char str[]);
+int ToIntNumber(char str[]);
+bool IsBinNumber(const char str[]);
+int BinToDec(char str[]);
+bool IsHexNumber(const char str[]);
+int HexToDec(const char str[]);
 
 void main() 
 {
@@ -36,18 +41,28 @@ void main()
 #endif // Lesson
 	
 	const int n = 256;
-	char str[n] = {"Qqqqqqq   qqqqqqq   qqqqqq"};
+	char str[n] = {"Was it    a       cat     I saw?"};
+	//char str[n] = { "0101011001" };
+	//char str[n] = { "7B" };
 	//cout << "Введите строку: ";
 	SetConsoleCP(1251);
 	//cin.getline(str, n);
 	SetConsoleCP(866); // - это не обязательно в последней версии студии.
 	cout << "Вы ввели строку:\n" << str << " длиной " << StringLength(str) << " символов" << endl;
-	ToUpper(str); 
-	ToLower(str);
-	Shrink(str);
+	cout << "Перевод в верхний регистр: "; ToUpper(str); cout << endl;
+	cout << "Перевод в нижний регистр: "; ToLower(str); cout << str << endl;
+	cout << "Удаление лишних пробелов: "; Shrink(str); cout << str << endl;
+	//cout << str << endl;
+	cout << "Строка" << (Polindrome(str) ? "" : " не") << " палиндром: ";
 	cout << str << endl;
-	cout << "Строка " << (Polindrome(str) ? "" : " не ") << "палиндром";
-	//cout << IsIntNumber(str);
+	if (!IsIntNumber(str))cout << "Строка не является целым десятичным числом!" << endl;
+	else cout << ToIntNumber(str) << " - это число является целым деситичным." << endl;
+	if (!IsBinNumber(str))cout << "Строка не является двоичным числом!" << endl;
+	else cout << "Строка " << str << " является двоичным числом и перевод его в деситчное число: " 
+		<< BinToDec(str) << endl;
+	if (!IsHexNumber(str))cout << "Строка не является шестнадцатеричным числом!" << endl;
+	else cout << "Строка " << str << " является шестнадцатеричным числом и перевод его в деситчное число: "
+		<< HexToDec(str) << endl;
 }
 
 
@@ -87,28 +102,118 @@ void Shrink(char str[])
 		}
 	}
 }
-void RemoveSymbol(char str[], char symbol)
+string RemoveSymbol(const string& str)
 {
-	for (int i = 0; i < str[i]; i++)
+	string result;
+	for (char c : str) 
 	{
-		while (str[i] == symbol)	
+		if (isalnum(c)) 
 		{
-			for (int j = i; str[j]; j++) str[j] = str[j + 1];
+			result += c;
 		}
 	}
+	return result;
 }
-bool Polindrome(char str[])
+bool Polindrome(const char str[])
 {
-	ToLower(str);
-	RemoveSymbol(str, ' ');
-	int n = strlen(str);
-	for (int i = 0; i < n /2; i++)
+	string copy = RemoveSymbol(str);
+	int len = copy.length();
+	for (int i = 0; i < len / 2; i++) 
 	{
-		if (str[i] != str[n - 1 - i])return false;
+		if (tolower(copy[i]) != tolower(copy[len - i - 1]))
+		{
+			return false;
+		}
 	}
 	return true;
 }
 bool IsIntNumber(const char str[])
 {
-	return 0;
+	if (str == NULL || *str == '\0')return false;
+	for (const char* i = str; *i != '\0'; ++i)
+	{
+		if (!isdigit(*i))return false;
+	}
+	return true;
+}
+int ToIntNumber(char str[])
+{
+	if (IsIntNumber(str))
+	{
+		int result = 0;
+		for (const char *i = str; *i != '\0'; ++i)
+		{
+			result = result * 10 + (*i - '0');
+		}
+		return result;
+	}	
+}
+bool IsBinNumber(const char str[])
+{
+	if (str[0] == '\0')
+	{
+		return false;
+	}
+	for (int i = 0; str[i] != '\0'; i++)
+	{
+		if (str[i] != '0' && str[i] != '1')
+		{
+			return false;
+		}
+	}
+	return true;
+}
+int BinToDec(char str[])
+{
+	if (IsBinNumber) 
+	{
+		int len = strlen(str);
+		int res = 0;
+		int buff = 1;
+		for (int i = len; i >= 0; i--)
+		{
+			if (str[i] == '1')
+			{
+				res += buff;
+			}
+			buff *= 2;
+		}
+		return res;
+	}
+}
+bool IsHexNumber(const char str[])
+{
+	int len = strlen(str);
+	if (len == 0) return false;
+	if (str[0] == '-') str++;
+	if (len == 1 && str[0] == '0') return true;
+	for (int i = 0; i < len; i++) 
+	{
+		if (!((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'f') ||
+			(str[i] >= 'A' && str[i] <= 'F')))
+			return false;
+	}
+	return true;
+}
+int HexToDec(const char str[])
+{
+	int len = strlen(str);
+	if (len == 0) return 0;
+	int res = 0, base = 1;
+	if (str[0] == '-') str++;
+	if (len > 2 && str[0] == '0' && (str[1] == 'x' || str[1] == 'X'))
+	{
+		str += 2;
+		len -= 2;
+	}
+	for (int i = 0; i < len; i++) 
+	{
+		int digit;
+		if (str[i] >= '0' && str[i] <= '9') digit = str[i] - '0';
+		else if (str[i] >= 'a' && str[i] <= 'f') digit = str[i] - 'a' + 10;
+		else if (str[i] >= 'A' && str[i] <= 'F') digit = str[i] - 'A' + 10;
+		else return 0;
+		res = res * 16 + digit;
+	}
+	return res;
 }
